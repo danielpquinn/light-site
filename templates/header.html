@@ -1,0 +1,9 @@
+<header>
+  <nav>
+    <ul>
+      <% _.each(navItems, function (navItem) { %>
+        <li><a href="#/<%=navItem.path%>"><%=navItem.title%></a></li>
+      <% }); %>
+    </ul>
+  </nav>
+</header>

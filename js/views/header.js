@@ -1,8 +1,9 @@
 define([
+  'underscore',
   'backbone',
   'collections/nav-items',
   'text!../../templates/header.html'
-], function (Backbone, NavItemsCollection, headerTemplate) {
+], function (_, Backbone, NavItemsCollection, headerTemplate) {
   'use strict';
 
   return Backbone.View.extend({

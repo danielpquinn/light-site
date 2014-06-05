@@ -1,14 +1,14 @@
 define([
   'underscore',
   'backbone',
-  'text!../../templates/footer.html'
-], function (_, Backbone, footerTemplate) {
+  'templates'
+], function (_, Backbone, templates) {
   'use strict';
 
   return Backbone.View.extend({
     el: '#footer',
     render: function () {
-      this.$el.html(_.template(footerTemplate, {
+      this.$el.html(_.template(templates.footer, {
         year: new Date().getFullYear()
       }));
     }

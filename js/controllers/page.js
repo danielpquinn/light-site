@@ -16,10 +16,7 @@ define([
       footerView = new FooterView();
 
     headerView.collection = new NavItemsCollection();
-    headerView.collection.fetch()
-      .success(function () {
-        headerView.render();
-      });
+    headerView.collection.fetch().success(function () { headerView.render(); });
 
     sidebarView.render();
 

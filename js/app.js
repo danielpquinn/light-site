@@ -22,23 +22,20 @@ define([
       theme = '';
 
     var getTemplate = function (name) {
-      return $.ajax('/themes/' + theme + '/' + name + '.html');
+      var _d = new $.Deferred();
+      $.ajax('/themes/' + theme + '/' + name + '.html')
+        .then(function (template) {
+          templates[name] = template;
+          _d.resolve();
+        });
+      return _d.promise();
     };
 
-    $.getJSON('/data/config.json', function (config) {
+    $.getJSON('/data/config.json').then(function (config) {
       theme = config.theme;
 
-      getTemplate('header')
-        .then(function (header) {
-          templates.header = header;
-          return getTemplate('sidebar');
-        }).then(function (sidebar) {
-          templates.sidebar = sidebar;
-          return getTemplate('footer');
-        }).then(function (footer) {
-          templates.footer = footer;
-          d.resolve();
-        });
+      $.when(getTemplate('header'), getTemplate('sidebar'), getTemplate('footer'))
+        .done(d.resolve);
     });
 
     return d.promise();

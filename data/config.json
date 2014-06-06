@@ -1,4 +1,5 @@
 {
+  "site-title": "Static Site",
   "nav-items": [
     { "title": "Home", "path": "" },
     { "title": "Resume", "path": "resume" },

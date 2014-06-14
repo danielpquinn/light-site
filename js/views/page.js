@@ -1,12 +1,17 @@
 define([
-  'backbone'
-], function (Backbone) {
+  'backbone',
+  'showdown'
+], function (Backbone, Showdown) {
   'use strict';
 
   return Backbone.View.extend({
     el: '#main',
-    render: function () {
-      this.$el.load(this.template);
+    render: function (md) {
+      var self = this;
+
+      $.get(md, function (md) {
+        self.$el.html(new Showdown.converter().makeHtml(md));
+      });
     }
   });
 });

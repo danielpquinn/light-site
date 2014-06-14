@@ -3,8 +3,10 @@ define([
   'jquery',
   'backbone',
   'router',
-  'templates'
-], function (_, $, Backbone, Router, templates) {
+  'templates',
+  'settings',
+  'bootstrap'
+], function (_, $, Backbone, Router, templates, settings) {
   'use strict';
 
   function App() {
@@ -12,18 +14,15 @@ define([
   }
 
   App.prototype.initialize = function () {
-    this.loadTemplates().then(function () {
-      Backbone.history.start();
-    });
+    this.loadTemplates().then(function () { Backbone.history.start(); });
   };
 
   App.prototype.loadTemplates = function () {
-    var d = new $.Deferred(),
-      theme = '';
+    var d = new $.Deferred();
 
     var getTemplate = function (name) {
       var _d = new $.Deferred();
-      $.ajax('/themes/' + theme + '/' + name + '.html')
+      $.ajax('/themes/' + settings.theme + '/' + name + '.html')
         .then(function (template) {
           templates[name] = template;
           _d.resolve();
@@ -31,8 +30,10 @@ define([
       return _d.promise();
     };
 
-    $.getJSON('/data/config.json').then(function (config) {
-      theme = config.theme;
+    $.getJSON('/data/settings.json').then(function (data) {
+      _.each(data, function (value, key) {
+        settings[key] = value;
+      });
 
       $.when(getTemplate('header'), getTemplate('sidebar'), getTemplate('footer'))
         .done(d.resolve);

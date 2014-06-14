@@ -20,8 +20,7 @@ define([
 
     sidebarView.render();
 
-    pageView.template = '/data/' + page + '.html';
-    pageView.render();
+    pageView.render('/data/' + page + '.md');
 
     footerView.render();
   }

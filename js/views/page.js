@@ -6,11 +6,11 @@ define([
 
   return Backbone.View.extend({
     el: '#main',
-    render: function (md) {
+    render: function (page) {
       var self = this;
 
-      $.get(md, function (md) {
-        self.$el.html(new Showdown.converter().makeHtml(md));
+      $.get('/data/' + page + '.md', function (data) {
+        self.$el.html(new Showdown.converter().makeHtml(data));
       });
     }
   });

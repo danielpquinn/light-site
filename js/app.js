@@ -14,10 +14,10 @@ define([
   }
 
   App.prototype.initialize = function () {
-    this.loadTemplates().then(function () { Backbone.history.start(); });
+    this.loadData().then(function () { Backbone.history.start(); });
   };
 
-  App.prototype.loadTemplates = function () {
+  App.prototype.loadData = function () {
     var d = new $.Deferred();
 
     var getTemplate = function (name) {

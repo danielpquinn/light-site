@@ -1,5 +1,5 @@
 [
   { "title": "home", "path": "" },
   { "title": "resume", "path": "resume" },
-  { "title": "contacts", "path": "contacts" }
+  { "title": "contact", "path": "contact" }
 ]

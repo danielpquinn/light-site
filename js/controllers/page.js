@@ -17,10 +17,9 @@ define([
 
     headerView.collection = new NavItemsCollection();
     headerView.collection.fetch().success(function () { headerView.render(); });
-
     sidebarView.render();
 
-    pageView.render('/data/' + page + '.md');
+    pageView.render(page);
 
     footerView.render();
   }
